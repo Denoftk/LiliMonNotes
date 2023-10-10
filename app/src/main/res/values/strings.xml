@@ -1,0 +1,8 @@
+<resources>
+    <string name="app_name">Lilimon Notes :3</string>
+    <string name="placeholder_result" />
+    <string name="loading_failed">Fallo al cargar</string>
+    <string name="loading">Cargando 7w7r</string>
+    <string name="retry">Reintentar</string>
+    <string name="connection_error">Error al conectar</string>
+</resources>
