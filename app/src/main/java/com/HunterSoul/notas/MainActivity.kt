@@ -20,7 +20,11 @@ class MainActivity : ComponentActivity() {
         WindowCompat.setDecorFitsSystemWindows(window, false)
         setContent {
                 NotasAppTheme{
-                    Surface{
+                    Surface(
+                        modifier = Modifier.fillMaxSize(),
+                        color = MaterialTheme.colorScheme.background
+                    )
+                    {
                         NotasApp()
                 }
             }

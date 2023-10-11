@@ -25,6 +25,8 @@ import androidx.compose.ui.Modifier
 import androidx.compose.ui.platform.LocalContext
 import androidx.compose.ui.res.painterResource
 import androidx.compose.ui.res.stringResource
+import androidx.compose.ui.text.TextStyle
+import androidx.compose.ui.text.font.FontWeight
 import androidx.compose.ui.tooling.preview.Preview
 import androidx.compose.ui.unit.dp
 import coil.compose.AsyncImage
@@ -52,17 +54,15 @@ fun HomeScreen(
 @Composable
 fun NotasGridScreen(notas: List<Nota>, modifier: Modifier = Modifier) {
     LazyVerticalGrid(
-        columns = GridCells.Adaptive(150.dp),
+        columns = GridCells.Adaptive(215.dp),
         modifier = modifier.fillMaxWidth(),
         contentPadding = PaddingValues(4.dp)
     ) {
-        items(items = notas , key = {nota -> nota.id} ) {
+        items(items = notas ) {
                 nota ->
                     NotaCard(nota = nota,
                     modifier = modifier
-                        .padding(4.dp)
-                        .fillMaxWidth()
-                        .aspectRatio(1.5f)
+                        .padding(4.dp).fillMaxWidth().aspectRatio(1.5f)
             )
         }
     }
@@ -71,23 +71,31 @@ fun NotasGridScreen(notas: List<Nota>, modifier: Modifier = Modifier) {
 // Importar los ciomponentes faltantes
 @Composable
 fun NotaCard(nota: Nota, modifier: Modifier = Modifier) {
-    Card(modifier = modifier ,
+    Card(
+        modifier = modifier ,
         elevation = CardDefaults.cardElevation(defaultElevation = 8.dp)
     ) {
-        Row(
-            modifier= Modifier
-                .fillMaxWidth()
-                .padding(18.dp)
-                .size(minHeight = 72.dp)
+        Column(
+            modifier= Modifier.fillMaxWidth(),
+            verticalArrangement = Arrangement.Center
+
         ){
-            Column(modifier = Modifier) {
                 Text(
-                    text = stringResource(nota.titulo)
+                    text = ""+nota.id,
+                    style = TextStyle(fontWeight = FontWeight.Bold),
+                    modifier = Modifier.padding(4.dp)
                 )
                 Text(
-                    text = stringResource(nota.contenido)
+                    text = ""+nota.titulo,
+                    style = TextStyle(fontWeight = FontWeight.Bold),
+                    modifier = Modifier.padding(4.dp)
                 )
-            }
+                Text(
+                    text = ""+nota.contenido,
+                    style = TextStyle(fontWeight = FontWeight.Bold),
+                    modifier = Modifier.padding(4.dp)
+                )
+
         }
     }
 }
@@ -95,7 +103,11 @@ fun NotaCard(nota: Nota, modifier: Modifier = Modifier) {
 
 @Composable
 fun LoadingScreen(modifier: Modifier = Modifier) {
-
+   // Image(
+     //   modifier = modifier.size(200.dp),
+       // painter = painterResource(R.drawable.loading_img),
+        //contentDescription = stringResource(R.string.loading)
+    //)
 }
 
 @Composable
@@ -133,7 +145,7 @@ fun ResultScreen(notas: String, modifier: Modifier = Modifier) {
 @Preview(showBackground = true)
 @Composable
 fun ResultScreenPreview() {
-    NotasAppTheme {
+    NotasAppTheme{
         ResultScreen(stringResource(R.string.placeholder_result))
     }
 }
